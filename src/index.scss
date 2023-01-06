@@ -6,35 +6,53 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap");
+
+$bootcllre: white;
+
 .bg {
-  color: red;
+  color: $bootcllre;
 }
-
 :root {
-  --bg-color:#131722;
+  --bg-color: #131722;
   --font-family: "Montserrat Alternates", sans-serif;
-  --light-bg:#24baef;
-  --font-color:#fff;
+  --light-bg: #24baef;
+  --font-color: #fff;
 }
-
 body {
   background-color: var(--bg-color);
   font-family: var(--font-family);
   color: var(--font-color);
 }
-
 a {
-  color: red;
+  color: $bootcllre;
   text-decoration: none;
 }
-
 .myinput {
   background-color: transparent;
+  color: $bootcllre;
+  border: solid 1px #a8a8a83d;
+}
+.imgg {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.Posion{
+  position: absolute;
+  right: 6%;
+}
+.off{
+  z-index: 999999;
+  box-shadow: 3px 3px 9px burlywood;
+}
+.trading{
   color: red;
-}/*# sourceMappingURL=index.css.map */
+}
