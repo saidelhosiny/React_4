@@ -1,58 +1,67 @@
-/* body {
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@1&family=Montserrat+Alternates&display=swap');
+
+*{
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
+body{
+  font-family: "Montserrat Alternates", sans-serif;
+}
+.nav{
+  background-color: #1E1427;
+}
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap");
-
-$bootcllre: white;
-
-.bg {
-  color: $bootcllre;
+.modeAplication{
+  background-color: white;
+  width: 60px;
+  height: 30px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  cursor: pointer;
 }
-:root {
-  --bg-color: #131722;
-  --font-family: "Montserrat Alternates", sans-serif;
-  --light-bg: #24baef;
-  --font-color: #fff;
-}
-body {
-  background-color: var(--bg-color);
-  font-family: var(--font-family);
-  color: var(--font-color);
-}
-a {
-  color: $bootcllre;
-  text-decoration: none;
-}
-.myinput {
-  background-color: transparent;
-  color: $bootcllre;
-  border: solid 1px #a8a8a83d;
-}
-.imgg {
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-.Posion{
+.toogle_Light{
+  cursor: pointer;
   position: absolute;
-  right: 6%;
+  top: 2.7px;
+  left: 2px;
+  background-color: #1E1427;
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  
 }
-.off{
-  z-index: 999999;
-  box-shadow: 3px 3px 9px burlywood;
+.toogle_Dark{
+  cursor: pointer;
+  position: absolute;
+  top: 2.7px;
+  left: 33px;
+  background-color: #1E1427;
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+  -o-transition: 0.5s all;
 }
-.trading{
-  color: red;
+.Logoname2{
+  color: #EE9b00;
 }

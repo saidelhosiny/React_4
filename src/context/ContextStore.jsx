@@ -1,53 +1,113 @@
-import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { createContext, useState } from "react";
 
-export let CreateOllApp = createContext(0);
-
+export let shantaContext = createContext(0);
 export default function ContextStore({ children }) {
-  const [dataMovic, SetDataMovic] = useState(null);
+  const [token, setToken] = useState(null);
+  const [cartId, setCartId] = useState(null);
+  const [cartCount, setCartCount] = useState(null);
 
-  async function getDataMovic() {
-    let { data } = await axios.get(
-      "https://api.themoviedb.org/3/trending/movie/day?api_key=5fbe34b0d2f3eb5e0a8225d88a6cf2c2"
-    );
+  let headers = {
+    token: localStorage.getItem("token"),
+  };
 
-    let ollDataMovic = data.results;
-    SetDataMovic(ollDataMovic);
+  async function addToCart(productId) {
+    try {
+      let { data } = await axios.post(
+        "https://route-ecommerce.onrender.com/api/v1/cart",
+        {
+          productId,
+        },
+        {
+          headers,
+        }
+      );
+
+      setCartCount(data.numOfCartItems);
+      return data;
+    } catch (error) {
+      
+    }
+  }
+  async function removeCart(productId) {
+    try {
+      const { data } = await axios.delete(
+        `https://route-ecommerce.onrender.com/api/v1/cart/${productId}`,
+        {
+          headers,
+        }
+      );
+
+      setCartCount(data.numOfCartItems);
+      return data;
+    } catch (error) {
+      
+    }
   }
 
-  // TV....
-  let [Tv, SetTv] = useState(null);
-
-  async function getTvData() {
-    let { data } = await axios.get(
-      "https://api.themoviedb.org/3/trending/tv/day?api_key=5fbe34b0d2f3eb5e0a8225d88a6cf2c2"
-    );
-    let dataTv = data.results;
-    SetTv(dataTv);
+  async function getLoggedUserCart() {
+    try {
+      let { data } = await axios.get(
+        "https://route-ecommerce.onrender.com/api/v1/cart",
+        {
+          headers,
+        }
+      );
+      setCartId(data?.data._id);
+      setCartCount(data.numOfCartItems);
+      return data;
+    } catch (error) {
+      
+    }
   }
+  // async function getCartId() {
+  //   let data = await getLoggedUserCart();
+  //   setCartId(data?.data.data._id);
 
-  // People...
+  // }
+  // useEffect(() => {
+  //   // getCartId();
 
-  let [People, SetPeople] = useState(null);
+  // }, []);
 
-  async function getPeopleData() {
-    let { data } = await axios.get(
-      "https://api.themoviedb.org/3/trending/person/day?api_key=5fbe34b0d2f3eb5e0a8225d88a6cf2c2"
-    );
-
-    let dataPeople = data.results;
-    SetPeople(dataPeople);
+  function updateCartCount(productId, count) {
+    return axios
+      .put(
+        `https://route-ecommerce.onrender.com/api/v1/cart/${productId}`,
+        { count },
+        { headers }
+      )
+      .then((response) => response)
+      .catch((error) => error);
   }
-
-  useEffect(() => {
-    getDataMovic();
-    getTvData();
-    getPeopleData();
-  }, []);
+  function onlinePayment(productId, url, values) {
+    return axios
+      .post(
+        `https://route-ecommerce.onrender.com/api/v1/orders/checkout-session/${productId}?url=${url}`,
+        {
+          shippingAddress: values,
+        },
+        { headers }
+      )
+      .then((response) => response)
+      .catch((error) => error);
+  }
 
   return (
-    <CreateOllApp.Provider value={{ Tv, People, dataMovic }}>
+    <shantaContext.Provider
+      value={{
+        token,
+        setToken,
+        addToCart,
+        getLoggedUserCart,
+        removeCart,
+        updateCartCount,
+        onlinePayment,
+        cartId,
+        cartCount,
+      }}
+    >
       {children}
-    </CreateOllApp.Provider>
+    </shantaContext.Provider>
   );
 }

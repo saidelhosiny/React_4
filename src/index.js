@@ -5,13 +5,27 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import "./index.scss";
+import "./index.css";
+import ContextStore from "./context/ContextStore";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+
+  <ContextStore>
+    <App/>
+  </ContextStore>
+  
+  
+  </QueryClientProvider>
+    
+
+    
+ 
 );
 
 // If you want to start measuring performance in your app, pass a function
